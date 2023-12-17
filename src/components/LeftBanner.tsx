@@ -1,4 +1,4 @@
-import React from "react";
+
 import { useTypewriter, Cursor } from "react-simple-typewriter";
 import { FaFacebookF, FaLinkedinIn, FaReact, FaInstagram } from "react-icons/fa";
 import { SiTailwindcss, SiHtml5, SiBootstrap } from "react-icons/si";
