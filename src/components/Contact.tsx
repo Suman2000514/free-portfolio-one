@@ -14,7 +14,7 @@ const Contact = () => {
   const [successMsg, setSuccessMsg] = useState("");
 
   const emailServiceID = "service_c48tjjc";
-  const emailTemplateID = "YOUR_EMAIL_TEMPLATE_ID";
+  const emailTemplateID = "template_asdlo1j";
   const emailUserID = "sumanpoudel2000514@gmail.com";
 
 const emailValidation = (email: string | null | undefined) => {
