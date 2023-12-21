@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import ContactLeft from "./ContactLeft";
 import Title from "./Title";
 import { FadeIn } from "./FadeIn";
@@ -14,16 +14,17 @@ const Contact = () => {
   const [successMsg, setSuccessMsg] = useState("");
 
   const emailServiceID = "service_c48tjjc";
-  const emailTemplateID = "YOUR_EMAIL_TEMPLATE_ID";  
+  const emailTemplateID = "YOUR_EMAIL_TEMPLATE_ID";
   const emailUserID = "sumanpoudel2000514@gmail.com";
 
-  const emailValidation = (email) => {
-    return String(email)
-      .toLocaleLowerCase()
-      .match(/^\w+([-]?\w+)*@\w+([-]?\w+)*(\.\w{2,3})+$/);
-  };
+const emailValidation = (email: string | null | undefined) => {
+  return String(email)
+    .toLocaleLowerCase()
+    .match(/^\w+([-]?\w+)*@\w+([-]?\w+)*(\.\w{2,3})+$/);
+};
 
-  const handleSend = (e) => {
+
+  const handleSend = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (username === "") {
       setErrMsg("Username is required!");
@@ -47,24 +48,25 @@ const Contact = () => {
       };
 
       emailjs
-        .send(emailServiceID, emailTemplateID, templateParams, emailUserID)
-        .then(
-          (response) => {
-            setSuccessMsg(
-              `Thank you dear ${username}, Your message has been sent successfully!`
-            );
-            setErrMsg("");
-            setUsername("");
-            setPhoneNumber("");
-            setEmail("");
-            setSubject("");
-            setMessage("");
-          },
-          (error) => {
-            setErrMsg("Failed to send the message. Please try again later.");
-            console.error("EmailJS Error:", error);
-          }
-        );
+  .send(emailServiceID, emailTemplateID, templateParams, emailUserID)
+  .then(
+    () => {
+      setSuccessMsg(
+        `Thank you dear ${username}, Your message has been sent successfully!`
+      );
+      setErrMsg("");
+      setUsername("");
+      setPhoneNumber("");
+      setEmail("");
+      setSubject("");
+      setMessage("");
+    },
+    (error) => {
+      setErrMsg("Failed to send the message. Please try again later.");
+      console.error("EmailJS Error:", error);
+    }
+  );
+
     }
   };
 
@@ -100,10 +102,9 @@ const Contact = () => {
                     <input
                       onChange={(e) => setUsername(e.target.value)}
                       value={username}
-                      className={`${
-                        errMsg === "Username is required!" &&
+                      className={`${errMsg === "Username is required!" &&
                         "outline-designColor"
-                      } contactInput`}
+                        } contactInput`}
                       type="text"
                     />
                   </div>
@@ -114,10 +115,9 @@ const Contact = () => {
                     <input
                       onChange={(e) => setPhoneNumber(e.target.value)}
                       value={phoneNumber}
-                      className={`${
-                        errMsg === "Phone number is required!" &&
+                      className={`${errMsg === "Phone number is required!" &&
                         "outline-designColor"
-                      } contactInput`}
+                        } contactInput`}
                       type="text"
                     />
                   </div>
@@ -129,10 +129,9 @@ const Contact = () => {
                   <input
                     onChange={(e) => setEmail(e.target.value)}
                     value={email}
-                    className={`${
-                      errMsg === "Please give your Email!" &&
+                    className={`${errMsg === "Please give your Email!" &&
                       "outline-designColor"
-                    } contactInput`}
+                      } contactInput`}
                     type="email"
                   />
                 </div>
@@ -143,10 +142,9 @@ const Contact = () => {
                   <input
                     onChange={(e) => setSubject(e.target.value)}
                     value={subject}
-                    className={`${
-                      errMsg === "Please give your Subject!" &&
+                    className={`${errMsg === "Please give your Subject!" &&
                       "outline-designColor"
-                    } contactInput`}
+                      } contactInput`}
                     type="text"
                   />
                 </div>
@@ -157,9 +155,8 @@ const Contact = () => {
                   <textarea
                     onChange={(e) => setMessage(e.target.value)}
                     value={message}
-                    className={`${
-                      errMsg === "Message is required!" && "outline-designColor"
-                    } contactTextArea`}
+                    className={`${errMsg === "Message is required!" && "outline-designColor"
+                      } contactTextArea`}
                     cols={30}
                     rows={8}
                   ></textarea>
